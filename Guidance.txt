@@ -1,0 +1,10 @@
+conda env:
+conda activate pytorch-yolo-v3
+
+run detect:
+python detect.py --images ./dog-cycle-car.png --det det --weights yolov3.weights
+
+
+memo:
+env requirements: requirements.txt
+opencv compatibility

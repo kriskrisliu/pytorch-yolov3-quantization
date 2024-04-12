@@ -174,7 +174,8 @@ if __name__ ==  '__main__':
     
 
     write = False
-    model(get_test_input(inp_dim, CUDA), CUDA)
+    # model(get_test_input(inp_dim, CUDA), CUDA)
+    # import ipdb;ipdb.set_trace()
     
     start_det_loop = time.time()
     
@@ -283,12 +284,14 @@ if __name__ ==  '__main__':
 
 
     def write(x, batches, results):
-        c1 = tuple(x[1:3].int())
-        c2 = tuple(x[3:5].int())
+        # c1 = tuple(x[1:3].int())
+        c1 = tuple((x[1].int().item(), x[2].int().item()))
+        c2 = tuple((x[3].int().item(), x[4].int().item()))
         img = results[int(x[0])]
         cls = int(x[-1])
         label = "{0}".format(classes[cls])
         color = random.choice(colors)
+        # import ipdb;ipdb.set_trace()
         cv2.rectangle(img, c1, c2,color, 1)
         t_size = cv2.getTextSize(label, cv2.FONT_HERSHEY_PLAIN, 1 , 1)[0]
         c2 = c1[0] + t_size[0] + 3, c1[1] + t_size[1] + 4
